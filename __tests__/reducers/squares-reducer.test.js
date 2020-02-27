@@ -27,5 +27,25 @@ describe ("squaresReducer", () => {
             }],
             stepNumber: 1
         })
+    });
+    const defaultState2 = 
+    {
+        history: [{
+            squares:
+            [null,null,null,null,null,null,null,null,null]},
+            {squares:
+            [null,null,null,null,null,'X',null,null,null]
+        }],
+        stepNumber: 1
+    }
+    test('Should successfully return to provided move in history', () => {
+        action = {
+            type: c.BACK_TO_MOVE,
+            step: 0
+        }
+        expect(squaresReducer(defaultState2, action)).toEqual({
+            history: defaultState2.history,
+            stepNumber: action.step
+        })
     })
 })

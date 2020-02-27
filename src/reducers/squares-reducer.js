@@ -1,8 +1,9 @@
 import c from './../constants';
+import { BACK_TO_MOVE } from '../constants/ActionTypes';
 
 export default (state={history: [{squares: Array(9).fill(null)}], stepNumber: 0}, action) => {
     let newState;
-    const {position, xIsNext} = action;
+    const {position, xIsNext, step} = action;
     switch (action.type) {
         case c.MAKE_MOVE:
             const history = state.history.slice(0, state.stepNumber + 1);
@@ -15,7 +16,13 @@ export default (state={history: [{squares: Array(9).fill(null)}], stepNumber: 0}
                 }]),
                 stepNumber: history.length
             }
-            return newState
+            return newState;
+        case BACK_TO_MOVE:
+            newState = {
+                history: state.history,
+                stepNumber: step
+            }
+            return newState;
         default:
             return state;
 

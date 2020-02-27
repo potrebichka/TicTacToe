@@ -35,9 +35,13 @@ class Game extends React.Component {
     }
 
     jumpTo(step) {
-        
+        const {dispatch} = this.props;
+        const action = {
+            type: c.BACK_TO_MOVE,
+            step: step
+        }
+        dispatch(action);
         this.setState({
-            stepNumber: step,
             xIsNext: (step % 2) === 0,
         });
     }
